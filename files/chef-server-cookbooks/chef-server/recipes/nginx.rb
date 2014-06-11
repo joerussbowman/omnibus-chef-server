@@ -116,6 +116,10 @@ nginx_vars = node['chef_server']['nginx'].to_hash.merge({
                  nginx_vars['ssl_port'] :
                  nginx_vars['non_ssl_port']
 
+  server_ip = (nginx_vars['ip']) ? 
+               nginx_vars['ip'] :
+               ""
+
   template lb_config do
     source "nginx_chef_api_lb.conf.erb"
     owner "root"
@@ -123,7 +127,8 @@ nginx_vars = node['chef_server']['nginx'].to_hash.merge({
     mode "0644"
     variables(nginx_vars.merge({
       :server_proto => server_proto,
-      :server_port => server_port
+      :server_port => server_port,
+      :server_ip => server_ip
     }))
     notifies :restart, 'service[nginx]' if OmnibusHelper.should_notify?("nginx")
   end

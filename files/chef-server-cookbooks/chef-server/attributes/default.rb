@@ -201,6 +201,7 @@ default['chef_server']['nginx']['enable'] = true
 default['chef_server']['nginx']['ha'] = false
 default['chef_server']['nginx']['dir'] = "/var/opt/chef-server/nginx"
 default['chef_server']['nginx']['log_directory'] = "/var/log/chef-server/nginx"
+default['chef_server']['nginx']['ip'] = false
 default['chef_server']['nginx']['ssl_port'] = 443
 default['chef_server']['nginx']['enable_non_ssl'] = false
 default['chef_server']['nginx']['non_ssl_port'] = 80
